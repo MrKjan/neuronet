@@ -49,4 +49,6 @@ n5.set_not_acted()
 n5.show(0)
 
 n5.fill_funcs(fep,fep)
+print("\nAfter reset acted\n")
+n5.fill_funcs(fep,fep,[])
 n1.f_act()

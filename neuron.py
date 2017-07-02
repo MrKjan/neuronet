@@ -1,4 +1,5 @@
 from dendr import *
+from copy import copy
 
 class neuron:
     def __init__(self, name = None):
@@ -6,6 +7,7 @@ class neuron:
         self.acted = 0b0
         self.out = None
         self.name = name
+        self.a = []
         #TODO: out, acted
         #TODO: Не забыть обнулять acted
 
@@ -67,13 +69,18 @@ class neuron:
     def __str__(self):
         return self.name
 
+
+
     def fill_funcs(self, f, f_, setted_neurons = []):
-        if len(self.dendrs) > 0:
-            for d in self.dendrs:
-                if (d.neuron_in not in setted_neurons):
-                    d.neuron_in.fill_funcs(f, f_, setted_neurons)
-                    setted_neurons.append(d.neuron_in)
+        for d in self.dendrs:
+            #print(len(setted_neurons))
+            if (d.neuron_in not in setted_neurons):
+                d.neuron_in.fill_funcs(f, f_, setted_neurons)
+                setted_neurons.append(d.neuron_in)
+        #setted_neurons.remove(self)
         self.set_f_acts(f,f_)
+        if self not in setted_neurons:  # Нейрон, с которого начинается
+            setted_neurons = []         # Заполнение, не входит в список
         print(self.name,' setted')
 
 
