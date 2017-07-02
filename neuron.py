@@ -67,6 +67,15 @@ class neuron:
     def __str__(self):
         return self.name
 
+    def fill_funcs(self, f, f_, setted_neurons = []):
+        if len(self.dendrs) > 0:
+            for d in self.dendrs:
+                if (d.neuron_in not in setted_neurons):
+                    d.neuron_in.fill_funcs(f, f_, setted_neurons)
+                    setted_neurons.append(d.neuron_in)
+        self.set_f_acts(f,f_)
+        print(self.name,' setted')
+
 
 ###########################################################
 ########################## neuron_entry ###################
@@ -84,6 +93,12 @@ class neuron_entry(neuron):
     def set_out(self, data):
         self.acted = 0b1
         self.out = data
+
+
+###################################################
+################support############################
+###############function############################
+###################################################
 
 
 

@@ -4,6 +4,7 @@ import random
 from neuron import *
 
 class dendr:
+
     def __init__(self, name = None):
         self.weight = random.uniform(-1, 1)
         self.neuron_in = None

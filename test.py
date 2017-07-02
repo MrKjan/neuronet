@@ -3,7 +3,9 @@ from dendr import *
 
 
 
-
+def fep():
+    print('yes')
+    return 0
 
 #test
 n0, n1, n2, n3, n4, n5 = neuron("n0"), neuron("n1"), neuron("n2"), neuron("n3"), neuron("n4"), neuron("n5")
@@ -46,3 +48,5 @@ print("\nAfter reset acted\n")
 n5.set_not_acted()
 n5.show(0)
 
+n5.fill_funcs(fep,fep)
+n1.f_act()
