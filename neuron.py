@@ -67,6 +67,18 @@ class neuron:
     def __str__(self):
         return self.name
 
+        def fill_funcs(self, f, f_, setted_neurons = []):
+        #print('зашло в ', self.name)
+        setted_neurons.append(self)
+        for d in self.dendrs:
+            if (d.neuron_in not in setted_neurons):
+                d.neuron_in.fill_funcs(f, f_, setted_neurons)
+        #setted_neurons.remove(self)
+        self.set_f_acts(f,f_)
+        if self == setted_neurons[0]:
+            #print('зашло')                     # Нейрон, с которого начинается
+            setted_neurons.clear()              # Заполнение, входит в первым
+        print(self.name,' setted')
 
 ###########################################################
 ########################## neuron_entry ###################
