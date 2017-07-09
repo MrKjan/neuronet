@@ -3,6 +3,7 @@ from basis import *
 import random
 from neuron import *
 
+
 class dendr:
 
     def __init__(self, name = None):
@@ -11,6 +12,8 @@ class dendr:
         self.acted = 0b0
         self.out = None
         self.name = name
+        self.delta_weight = 0
+        self.act_fun = lambda x,y: x*y
         #print(self.weight)#TODO: for test
 
     def set_weight(self, weight):
@@ -25,7 +28,7 @@ class dendr:
 
     def act(self):
         if self.acted == 0b0:
-            self.out = self.neuron_in.act()*self.weight
+            self.out = self.act_fun(self.neuron_in.act(),self.weight)
             self.acted = 0b1
         return self.out
 
@@ -41,7 +44,8 @@ class dendr:
         pass
 
     def show(self, offset):
-        print("   "*offset, self)
+        print("   "*offset, 'Weight      : ',self)
+        print("   "*offset, 'Delta_weight: ',self.delta_weight)
         print("   " * offset, "Acted: ", self.acted)
         print("   "*offset, "Neuron")
         self.neuron_in.show(offset+1)
